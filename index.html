@@ -186,23 +186,24 @@
   var wizardSpeed = 3;
   var wizardWidth = 70;
 
+  /*Функция принимает параметр left (направление полёта фаербола), если параметр left — true, то фаербол летит по ветру и функция возвращает скорость равную 5, иначе он летит против ветра со скоростью 2*/
   var getFireballSpeed = function(left) {
     return left ? 5 : 2;
   }
 
+  /*Функция возвращает пропорциональную высоту мага*/
   var getWizardHeight = function() {
-    var a  = 1.337 * wizardWidth
-     return a;
+    return 1.337 * wizardWidth;
   }
 
+  /*Функция принимает параметр width (обозначает ширину игровой области), возвращает начальное положение мага по горизонтали*/
   var getWizardX = function(width) {
-    var x = width / 2;
-    return x;
+    return width / 2;
   }
 
+  /*Функция принимает параметр height (обозначает высоту игровой области), возвращает начальное положение мага по вертикали. height / 3, так как отсчет ведется из левого верхнего угла*/
   var getWizardY = function(height) {
-    var y = height / 3 ;
-    return y;
+    return height / 3 ;
   }
 </script>
 
