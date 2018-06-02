@@ -35,7 +35,7 @@ var getMaxElement = function (arr) {
   }
 
   return maxElement;
-}
+};
 
 /* Функция getColumnsColor предназначена для изменения насыщенности синего цвета по цветовой схеме RGB с альфа каналом */
 var getColumnsColor = function () {
@@ -45,7 +45,7 @@ var getColumnsColor = function () {
   var alpha = 1;
 
   return 'rgba(' + red + ',' + green + ',' + blue + ',' + alpha + ')';
-}
+};
 
 /* Функция renderStatistics являться методом объекта window и будет вызываться каждый раз когда игрок проходит уровень (попадает в забор).
 Содержит параметры:
@@ -67,7 +67,7 @@ window.renderStatistics = function (ctx, players, times) {
   var maxTime = getMaxElement(times);
 
   for (var i = 0; i < players.length; i++) {
-    if (players[i] == 'Вы') {
+    if (players[i] === 'Вы') {
       ctx.fillStyle = 'rgba(255, 0, 0, 1)';
     } else {
       ctx.fillStyle = getColumnsColor();
