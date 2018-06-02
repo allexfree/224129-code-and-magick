@@ -18,15 +18,15 @@ var barHeight = CLOUD_HEIGHT - CONGRATS_Y * 3; // высота гистогра�
   y - координата начала облака во вертикали;
   color - цвет облака. */
 
-var renderCloud = function(ctx, x, y, color) {
+var renderCloud = function (ctx, x, y, color) {
   ctx.fillStyle = color;
   ctx.fillRect(x, y, CLOUD_WIDTH, CLOUD_HEIGHT);
 };
 
 /* Функция getMaxElement предназначена для нахождения максимального элемента в массиве */
 var getMaxElement = function (arr) {
-var maxElement = arr[0]; //маркер максимального элемента (элемент с index = 0)
-var i;
+  var maxElement = arr[0]; // маркер максимального элемента (элемент с index = 0)
+  var i;
 
   for (i = 1; i < arr.length; i++) {
     if (arr[i] > maxElement) {
@@ -54,11 +54,9 @@ var getColumnsColor = function () {
   times — массив, по длине совпадающий с массивом names. Массив содержит время прохождения уровня соответствующего игрока из массива names. Время прохождения уровня задано в миллисекундах.
 
   Для изменения направления отрисовки столбцов используется умножение на -1. */
-window.renderStatistics = function(ctx, players, times) {
+window.renderStatistics = function (ctx, players, times) {
   renderCloud(ctx, INITIAL_CLOUD_X + GAP, INITIAL_CLOUD_Y + GAP, 'rgba(0, 0, 0, 0.5)');
   renderCloud(ctx, INITIAL_CLOUD_X, INITIAL_CLOUD_Y, '#ffffff');
-
-  console.log(players, times);
 
   ctx.font = '16px PT Mono';
   ctx.fillStyle = '#000000';
