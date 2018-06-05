@@ -39,12 +39,12 @@ var getMaxElement = function (arr) {
 
 /* Функция getColumnsColor предназначена для изменения насыщенности синего цвета по цветовой схеме RGB с альфа каналом */
 var getColumnsColor = function () {
-  var red = 0;
-  var green = 0;
+  var RED = 0;
+  var GREEN = 0;
+  var ALPHA = 1;
   var blue = Math.floor(Math.random() * 255);
-  var alpha = 1;
 
-  return 'rgba(' + red + ',' + green + ',' + blue + ',' + alpha + ')';
+  return 'rgba(' + RED + ',' + GREEN + ',' + blue + ',' + ALPHA + ')';
 };
 
 /* Функция renderStatistics являться методом объекта window и будет вызываться каждый раз когда игрок проходит уровень (попадает в забор).
@@ -67,12 +67,10 @@ window.renderStatistics = function (ctx, players, times) {
   var maxTime = getMaxElement(times);
 
   for (var i = 0; i < players.length; i++) {
-    if (players[i] === 'Вы') {
-      ctx.fillStyle = 'rgba(255, 0, 0, 1)';
-    } else {
-      ctx.fillStyle = getColumnsColor();
-    }
-    ctx.fillText(players[i], CONGRATS_X + GAP * 2 + (BAR_WIDTH + GAP_COLUMN) * i, CLOUD_HEIGHT);
+    (players[i] === 'Вы') ? ctx.fillStyle = 'rgba(255, 0, 0, 1)' : ctx.fillStyle = getColumnsColor();
     ctx.fillRect(CONGRATS_X + GAP * 2 + (BAR_WIDTH + GAP_COLUMN) * i, 250, BAR_WIDTH, ((barHeight * times[i]) / maxTime) * -1);
+    ctx.fillStyle = '#000000';
+    ctx.fillText(players[i], CONGRATS_X + GAP * 2 + (BAR_WIDTH + GAP_COLUMN) * i, CLOUD_HEIGHT);
+    ctx.fillText(Math.round(times[i]), CONGRATS_X + GAP * 2 + (BAR_WIDTH + GAP_COLUMN) * i, CLOUD_HEIGHT - CONGRATS_Y + GAP - (barHeight * times[i] / maxTime));
   }
 };
