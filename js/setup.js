@@ -38,7 +38,7 @@ var WIZARDS = [
 {
   name: NAMES[5],
   surname: SURNAMES[5],
-  eyesColor: 'green',
+  eyesColor: ' ',
   coatColor: 'rgb(0, 0, 0)'
 }
 ];
@@ -61,15 +61,16 @@ var removeElements = function () {
 
 removeElements();
 
+var fragment = document.createDocumentFragment();
 var similarWizardsList = document.querySelector('.setup-similar-list');
 var similarWizardTemplate = document.querySelector('#similar-wizard-template').content.querySelector('.setup-similar-item');
 
 for (var i = 0; i < NAMES.length / 2; i++) {
   var random = Math.floor(Math.random() * NAMES.length);
-  console.log(random);
   var wizardElement = similarWizardTemplate.cloneNode(true);
+  fragment.appendChild(wizardElement);
   wizardElement.querySelector('.setup-similar-label').textContent = (NAMES[random] + SURNAMES[random]);
-  similarWizardsList.appendChild(wizardElement);
+  similarWizardsList.appendChild(fragment);
 
   for (var j = 0; j < WIZARDS.length; j++) {
     random = Math.floor(Math.random() * WIZARDS.length);
