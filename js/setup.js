@@ -5,42 +5,42 @@
 var NAMES = ['Иван ', 'Хуан Себастьян ', 'Мария ', 'Кристоф ', 'Виктор ', 'Юлия ', 'Люпита ', 'Вашингтон '];
 var SURNAMES = ['да Марья', 'Верон', 'Мирабелла', 'Вальц', 'Онопко', 'Топольницкая', 'Нионго', 'Ирвинг'];
 var WIZARDS = [
-{
-  name: NAMES[0],
-  surname: SURNAMES[0],
-  eyesColor: 'black',
-  coatColor: 'rgb(101, 137, 164)'
-},
-{
-  name: NAMES[1],
-  surname: SURNAMES[1],
-  eyesColor: 'red',
-  coatColor: 'rgb(241, 43, 107)'
-},
-{
-  name: NAMES[2],
-  surname: SURNAMES[2],
-  eyesColor: 'blue',
-  coatColor: 'rgb(146, 100, 161)'
-},
-{
-  name: NAMES[3],
-  surname: SURNAMES[3],
-  eyesColor: 'yellow',
-  coatColor: 'rgb(56, 159, 117)'
-},
-{
-  name: NAMES[4],
-  surname: SURNAMES[4],
-  eyesColor: 'green',
-  coatColor: 'rgb(215, 210, 55)'
-},
-{
-  name: NAMES[5],
-  surname: SURNAMES[5],
-  eyesColor: ' ',
-  coatColor: 'rgb(0, 0, 0)'
-}
+  {
+    name: NAMES[0],
+    surname: SURNAMES[0],
+    eyesColor: 'black',
+    coatColor: 'rgb(101, 137, 164)'
+  },
+  {
+    name: NAMES[1],
+    surname: SURNAMES[1],
+    eyesColor: 'red',
+    coatColor: 'rgb(241, 43, 107)'
+  },
+  {
+    name: NAMES[2],
+    surname: SURNAMES[2],
+    eyesColor: 'blue',
+    coatColor: 'rgb(146, 100, 161)'
+  },
+  {
+    name: NAMES[3],
+    surname: SURNAMES[3],
+    eyesColor: 'yellow',
+    coatColor: 'rgb(56, 159, 117)'
+  },
+  {
+    name: NAMES[4],
+    surname: SURNAMES[4],
+    eyesColor: 'green',
+    coatColor: 'rgb(215, 210, 55)'
+  },
+  {
+    name: NAMES[5],
+    surname: SURNAMES[5],
+    eyesColor: ' ',
+    coatColor: 'rgb(0, 0, 0)'
+  }
 ];
 
 // Вершины
@@ -54,7 +54,7 @@ var removeElements = function () {
   elementHiddenClass[0].classList.remove('hidden');
   elementHiddenClass[1].classList.remove('hidden');
   elementHiddenAttribute.removeAttribute('style', 'display: none');
-}
+};
 
 
 // Вызов ф-ций
