@@ -1,53 +1,35 @@
 'use strict';
 
-// Определение констант
+// Объявление переменных
 
 var NAMES = ['Иван ', 'Хуан Себастьян ', 'Мария ', 'Кристоф ', 'Виктор ', 'Юлия ', 'Люпита ', 'Вашингтон '];
 var SURNAMES = ['да Марья', 'Верон', 'Мирабелла', 'Вальц', 'Онопко', 'Топольницкая', 'Нионго', 'Ирвинг'];
-var WIZARDS = [
-  {
-    name: NAMES[0],
-    surname: SURNAMES[0],
-    eyesColor: 'black',
-    coatColor: 'rgb(101, 137, 164)'
-  },
-  {
-    name: NAMES[1],
-    surname: SURNAMES[1],
-    eyesColor: 'red',
-    coatColor: 'rgb(241, 43, 107)'
-  },
-  {
-    name: NAMES[2],
-    surname: SURNAMES[2],
-    eyesColor: 'blue',
-    coatColor: 'rgb(146, 100, 161)'
-  },
-  {
-    name: NAMES[3],
-    surname: SURNAMES[3],
-    eyesColor: 'yellow',
-    coatColor: 'rgb(56, 159, 117)'
-  },
-  {
-    name: NAMES[4],
-    surname: SURNAMES[4],
-    eyesColor: 'green',
-    coatColor: 'rgb(215, 210, 55)'
-  },
-  {
-    name: NAMES[5],
-    surname: SURNAMES[5],
-    eyesColor: ' ',
-    coatColor: 'rgb(0, 0, 0)'
-  }
-];
+var EYES_COLOR = ['black', 'red', 'blue', 'yellow', 'green', ''];
+var COAT_COLOR = ['rgb(101, 137, 164)', 'rgb(241, 43, 107)', 'rgb(146, 100, 161)', 'rgb(56, 159, 117)', 'rgb(215, 210, 55)', 'rgb(0, 0, 0)'];
+var WIZARDS = [];
+var fragment = document.createDocumentFragment();
+var similarWizardsList = document.querySelector('.setup-similar-list');
+var similarWizardTemplate = document.querySelector('#similar-wizard-template').content.querySelector('.setup-similar-item');
+
+for (var i = 0; i < 6; i++) {
+  var descriptionWizard = {};
+  var names = NAMES[i];
+  var surnames = SURNAMES[i];
+  var eyesColor = EYES_COLOR[i];
+  var coatColor = COAT_COLOR[i];
+  descriptionWizard.names = names;
+  descriptionWizard.surname = surnames;
+  descriptionWizard.eyesColor = eyesColor;
+  descriptionWizard.coatColor = coatColor;
+  WIZARDS.push(descriptionWizard);
+} // формирование масиива WIZARDS
 
 // Вершины
 
+
 // Определение ф-ций
 
-/* Ф-ция removeElements удаляет class="hidden и атрибут style="display: none" */
+/* Ф-ция removeElements показывает элементы блоков, у котороых проставлен class="hidden и атрибут style="display: none" */
 var removeElements = function () {
   var elementHiddenClass = document.querySelectorAll('.hidden');
   var elementHiddenAttribute = document.querySelector('#similar-wizard-template');
@@ -56,29 +38,30 @@ var removeElements = function () {
   elementHiddenAttribute.removeAttribute('style', 'display: none');
 };
 
+/* Ф-ция getRandom возвращает случайное число от 0 до длины массива WIZARDS */
+var getRandom = function () {
+  return Math.floor(Math.random() * WIZARDS.length);
+};
+
+/* Ф-ция fillElements выполняет заполнение блока элементами на основе массива WIZARDS */
+var fillElements = function () {
+  wizardElement.querySelector('.setup-similar-label').textContent = (WIZARDS[getRandom()].names + WIZARDS[getRandom()].surname);
+  wizardElement.querySelector('.wizard-coat').style.fill = WIZARDS[getRandom()].coatColor;
+  wizardElement.querySelector('.wizard-eyes').style.fill = WIZARDS[getRandom()].eyesColor;
+}
+
+/* Ф-ция addElements добавдяет заполненые DOM-элементы в блок .setup-similar-list*/
+var addElements = function () {
+  fragment.appendChild(wizardElement);
+  similarWizardsList.appendChild(fragment);
+}
 
 // Вызов ф-ций
 
 removeElements();
 
-var fragment = document.createDocumentFragment();
-var similarWizardsList = document.querySelector('.setup-similar-list');
-var similarWizardTemplate = document.querySelector('#similar-wizard-template').content.querySelector('.setup-similar-item');
-
-for (var i = 0; i < NAMES.length / 2; i++) {
-  var random = Math.floor(Math.random() * NAMES.length);
+for (var i = 0; i < 4; i++) {
   var wizardElement = similarWizardTemplate.cloneNode(true);
-  fragment.appendChild(wizardElement);
-  wizardElement.querySelector('.setup-similar-label').textContent = (NAMES[random] + SURNAMES[random]);
-  similarWizardsList.appendChild(fragment);
-
-  for (var j = 0; j < WIZARDS.length; j++) {
-    random = Math.floor(Math.random() * WIZARDS.length);
-    wizardElement.querySelector('.wizard-coat').style.fill = WIZARDS[random].coatColor;
-  }
-
-  for (var z = 0; z < WIZARDS.length; z++) {
-    wizardElement.querySelector('.wizard-eyes').style.fill = WIZARDS[random].eyesColor;
-  }
+  fillElements();
+  addElements();
 }
-
