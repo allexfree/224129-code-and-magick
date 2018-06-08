@@ -48,19 +48,19 @@ var fillElements = function () {
   wizardElement.querySelector('.setup-similar-label').textContent = (WIZARDS[getRandom()].names + WIZARDS[getRandom()].surname);
   wizardElement.querySelector('.wizard-coat').style.fill = WIZARDS[getRandom()].coatColor;
   wizardElement.querySelector('.wizard-eyes').style.fill = WIZARDS[getRandom()].eyesColor;
-}
+};
 
 /* Ф-ция addElements добавдяет заполненые DOM-элементы в блок .setup-similar-list*/
 var addElements = function () {
   fragment.appendChild(wizardElement);
   similarWizardsList.appendChild(fragment);
-}
+};
 
 // Вызов ф-ций
 
 removeElements();
 
-for (var i = 0; i < 4; i++) {
+for (i = 0; i < 4; i++) {
   var wizardElement = similarWizardTemplate.cloneNode(true);
   fillElements();
   addElements();
