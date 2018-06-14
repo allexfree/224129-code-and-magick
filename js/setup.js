@@ -58,12 +58,6 @@ var addElements = function (element) {
   fragment.appendChild(element);
 };
 
-
-/* Ф-ция getRandomMinMax получает случайное число от min до max */
-var getRandomMinMax = function (min, max) {
-  return Math.floor(Math.random() * (max - min)) + min;
-};
-
 /* Ф-ция closeDialogWindow добавляет класс hidden блоку .setup */
 var closeDialogWindow = function () {
   blockSetup.classList.add('hidden');
@@ -138,11 +132,11 @@ buttonSubmit.addEventListener('click', function () {
   setSubmitAttribute();
 });
 
-wizardCoat.addEventListener('click', function() {
+wizardCoat.addEventListener('click', function () {
   changeCoatsColor(coatColor, wizardCoat, inputCoatColor);
 });
 
-wizardEyes.addEventListener('click', function() {
+wizardEyes.addEventListener('click', function () {
   changeEyesColor(eyesColor, wizardEyes, inputEyesColor);
 });
 
