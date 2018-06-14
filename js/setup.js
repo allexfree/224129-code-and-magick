@@ -75,7 +75,7 @@ var setSubmitAttribute = function () {
 
 /* Ф-ция changeCoatsColor устанавливает атрибут style="fill:..." блоку указанному в парметре elementOne и атрибут value блоку, указанному в параметре elementTwo, цвет берется из параметра array */
 var changeCoatsColor = function (array, elementOne, elementTwo) {
-  var color = getRandomArrayElement(array); //в переменную передается рандомный элемент массива array
+  var color = getRandomArrayElement(array); // в переменную передается рандомный элемент массива array
   elementOne.setAttribute('style', 'fill:' + color);
   elementTwo.setAttribute('value', color);
 };
