@@ -9,6 +9,7 @@ var names = ['Иван ', 'Хуан Себастьян ', 'Мария ', 'Кри
 var surnames = ['да Марья', 'Верон', 'Мирабелла', 'Вальц', 'Онопко', 'Топольницкая', 'Нионго', 'Ирвинг'];
 var eyesColor = ['black', 'red', 'blue', 'yellow', 'green', ''];
 var coatColor = ['rgb(101, 137, 164)', 'rgb(241, 43, 107)', 'rgb(146, 100, 161)', 'rgb(56, 159, 117)', 'rgb(215, 210, 55)', 'rgb(0, 0, 0)'];
+var fireballColor = ['ee4830', '30a8ee', '5ce6c0', 'e848d5', 'e6e848'];
 var wizards = [];
 var blockSetup = document.querySelector('.setup');
 var blockSetupClose = document.querySelector('.setup-close');
@@ -18,8 +19,9 @@ var setupWizard = document.querySelector('.setup-wizard');
 var wizardCoat = setupWizard.querySelector('.wizard-coat');
 var wizardEyes = setupWizard.querySelector('.wizard-eyes');
 var fireball = document.querySelector('.setup-fireball-wrap');
+var inputFireballColor = document.querySelector('input[name="fireball-color"]');
 
-console.dir(wizardEyes);
+console.log(inputFireballColor);
 
 // Вершины
 var similarWizardsList = document.querySelector('.setup-similar-list');
@@ -85,15 +87,18 @@ var getRandomMinMax = function (min, max) {
   return Math.floor(Math.random() * (max - min)) + min;
 };
 
-var changeFireballColor = function () {
-  fireball.setAttribute('style', 'background-color: #' + getRandomMinMax(10, 99).toString() + getRandomMinMax(10, 99).toString() + getRandomMinMax(10, 99).toString());
-}
+var changeFireballColor = function (array, element) {
+  //fireball.setAttribute('style', 'background-color: #' + getRandomMinMax(10, 99).toString() + getRandomMinMax(10, 99).toString() + getRandomMinMax(10, 99).toString());
+  for (var i = 0; i < array.length; i++ ) {
+    element.setAttribute('style', 'background-color: #' + getRandomArrayIndex(array));
+  }
+};
 
 // Вызов ф-ций
 
 for (var i = 0; i < 6; i++) {
   wizards.push({name: names[i], surname: surnames[i], eyesColor: eyesColor[i], coatColor: coatColor[i]});
-} // формирование масиива wizards
+} // формирование массива wizards
 
 for (i = 0; i < 4; i++) {
   var wizardElement = similarWizardTemplate.cloneNode(true);
@@ -105,6 +110,12 @@ showElements();
 
 document.addEventListener('keydown', function (evt) {
   if (evt.keyCode === ESC_KEYCODE) {
+    closeDialogWindow();
+  }
+});
+
+blockSetupClose.addEventListener('keydown', function (evt) {
+  if (evt.keyCode === ENTER_KEYCODE) {
     closeDialogWindow();
   }
 });
@@ -142,5 +153,8 @@ wizardEyes.addEventListener('click', function() {
 });
 
 fireball.addEventListener('click', function() {
-  changeFireballColor();
+  changeFireballColor(fireballColor, fireball);
+  var attr = fireball.getAttribute('style');
+  inputFireballColor.setAttribute('value', attr);
 });
+
