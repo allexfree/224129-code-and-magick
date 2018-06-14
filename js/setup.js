@@ -7,12 +7,13 @@ var ESC_KEYCODE = 27;
 
 var names = ['Иван ', 'Хуан Себастьян ', 'Мария ', 'Кристоф ', 'Виктор ', 'Юлия ', 'Люпита ', 'Вашингтон '];
 var surnames = ['да Марья', 'Верон', 'Мирабелла', 'Вальц', 'Онопко', 'Топольницкая', 'Нионго', 'Ирвинг'];
-var eyesColor = ['black', 'red', 'blue', 'yellow', 'green', ''];
+var eyesColor = ['black', 'red', 'blue', 'yellow', 'green'];
 var coatColor = ['rgb(101, 137, 164)', 'rgb(241, 43, 107)', 'rgb(146, 100, 161)', 'rgb(56, 159, 117)', 'rgb(215, 210, 55)', 'rgb(0, 0, 0)'];
 var fireballColor = ['ee4830', '30a8ee', '5ce6c0', 'e848d5', 'e6e848'];
 var wizards = [];
 
 // Вершины
+var fragment = document.createDocumentFragment();
 var similarWizardsList = document.querySelector('.setup-similar-list');
 var similarWizardTemplate = document.querySelector('#similar-wizard-template').content.querySelector('.setup-similar-item');
 var blockSetup = document.querySelector('.setup');
@@ -23,6 +24,8 @@ var setupWizard = document.querySelector('.setup-wizard');
 var wizardCoat = setupWizard.querySelector('.wizard-coat');
 var wizardEyes = setupWizard.querySelector('.wizard-eyes');
 var fireball = document.querySelector('.setup-fireball-wrap');
+var inputCoatColor = document.querySelector('input[name="coat-color"]');
+var inputEyesColor = document.querySelector('input[name="eyes-color"]');
 var inputFireballColor = document.querySelector('input[name="fireball-color"]');
 
 
@@ -38,79 +41,66 @@ var showElements = function () {
   elementHiddenAttribute.removeAttribute('style', 'display: none');
 };
 
-/* Ф-ция getRandomArrayIndex получает случайный индекс элемента массива, указанного в парметре array*/
-var getRandomArrayIndex = function (array) {
+/* Ф-ция getRandomArrayElement получает случайный элемент массива, указанного в парметре array */
+var getRandomArrayElement = function (array) {
   return array[Math.floor(Math.random() * array.length)];
 };
 
 /* Ф-ция fillElements выполняет заполнение блока элементами на основе массива wizards */
 var fillElements = function (element) {
-  element.querySelector('.setup-similar-label').textContent = (getRandomArrayIndex(wizards).name + getRandomArrayIndex(wizards).surname);
-  element.querySelector('.wizard-coat').style.fill = getRandomArrayIndex(wizards).coatColor;
-  element.querySelector('.wizard-eyes').style.fill = getRandomArrayIndex(wizards).eyesColor;
+  element.querySelector('.setup-similar-label').textContent = (getRandomArrayElement(wizards).name + getRandomArrayElement(wizards).surname);
+  element.querySelector('.wizard-coat').style.fill = getRandomArrayElement(wizards).coatColor;
+  element.querySelector('.wizard-eyes').style.fill = getRandomArrayElement(wizards).eyesColor;
 };
 
-/* Ф-ция addElements добавляет заполненые DOM-элементы в блок .setup-similar-list*/
+/* Ф-ция addElements добавляет заполненые DOM-элементы в блок .setup-similar-list */
 var addElements = function (element) {
-  var fragment = document.createDocumentFragment();
   fragment.appendChild(element);
-  similarWizardsList.appendChild(fragment);
 };
 
-var closeDialogWindow = function () {
-  blockSetup.classList.add('hidden');
-};
 
-var openDialogWindow = function () {
-  blockSetup.classList.remove('hidden');
-};
-
-var sendData = function () {
-  buttonSubmit.setAttribute('type', 'submit');
-};
-
-var changeCoatColor = function () {
-  for (var i = 0; i < coatColor.length; i++) {
-    wizardCoat.setAttribute('style', 'fill:' + getRandomArrayIndex(coatColor));
-  }
-};
-
-var changeEyesColor = function () {
-  for (var i = 0; i < eyesColor.length; i++) {
-    wizardEyes.setAttribute('style', 'fill:' + getRandomArrayIndex(eyesColor));
-  }
-};
-
+/* Ф-ция getRandomMinMax получает случайное число от min до max */
 var getRandomMinMax = function (min, max) {
   return Math.floor(Math.random() * (max - min)) + min;
 };
 
-var changeFireballColor = function (array, element) {
-  //fireball.setAttribute('style', 'background-color: #' + getRandomMinMax(10, 99).toString() + getRandomMinMax(10, 99).toString() + getRandomMinMax(10, 99).toString());
-  for (var i = 0; i < array.length; i++ ) {
-    element.setAttribute('style', 'background-color: #' + getRandomArrayIndex(array));
-  }
+/* Ф-ция closeDialogWindow добавляет класс hidden блоку .setup */
+var closeDialogWindow = function () {
+  blockSetup.classList.add('hidden');
 };
 
-var getBlockAttribute = function (blockName) {
-  return blockName.getAttribute('style');
-}
+/* Ф-ция closeDialogWindow удаляет класс hidden у блока .setup */
+var openDialogWindow = function () {
+  blockSetup.classList.remove('hidden');
+};
 
+/* Ф-ция setSubmitAttribute добавляет атрибут type="submit" кнопке button */
+var setSubmitAttribute = function () {
+  buttonSubmit.setAttribute('type', 'submit');
+};
 
+/* Ф-ция changeCoatsColor устанавливает атрибут style="fill:..." блоку указанному в парметре elementOne и атрибут value блоку, указанному в параметре elementTwo, цвет берется из параметра array */
+var changeCoatsColor = function (array, elementOne, elementTwo) {
+  var color = getRandomArrayElement(array); //в переменную передается рандомный элемент массива array
+  elementOne.setAttribute('style', 'fill:' + color);
+  elementTwo.setAttribute('value', color);
+};
 
-// Вызов ф-ций
+/* Ф-ция changeCoatsColor устанавливает атрибут style="fill:..." блоку указанному в парметре elementOne и атрибут value блоку, указанному в параметре elementTwo, цвет берется из параметра array */
+var changeEyesColor = function (array, elementOne, elementTwo) {
+  var color = getRandomArrayElement(array);
+  elementOne.setAttribute('style', 'fill:' + color);
+  elementTwo.setAttribute('value', color);
+};
 
-for (var i = 0; i < 6; i++) {
-  wizards.push({name: names[i], surname: surnames[i], eyesColor: eyesColor[i], coatColor: coatColor[i]});
-} // формирование массива wizards
+/* Ф-ция changeCoatsColor устанавливает атрибут style="background-color:..." блоку указанному в парметре elementOne и атрибут value блоку, указанному в параметре elementTwo, цвет берется из параметра array */
+var changeFireballColor = function (array, elementOne, elementTwo) {
+  var color = '#' + getRandomArrayElement(array);
+  elementOne.setAttribute('style', 'background-color:' + color);
+  elementTwo.setAttribute('value', color);
+};
 
-for (i = 0; i < 4; i++) {
-  var wizardElement = similarWizardTemplate.cloneNode(true);
-  addElements(wizardElement);
-  fillElements(wizardElement);
-}
-
-showElements();
+// Обработчики событий
 
 document.addEventListener('keydown', function (evt) {
   if (evt.keyCode === ESC_KEYCODE) {
@@ -132,7 +122,7 @@ blockSetupOpenIcon.addEventListener('keydown', function (evt) {
 
 buttonSubmit.addEventListener('keydown', function (evt) {
   if (evt.keyCode === ENTER_KEYCODE) {
-    sendData();
+    setSubmitAttribute();
   }
 });
 
@@ -145,20 +135,33 @@ blockSetupOpenIcon.addEventListener('click', function () {
 });
 
 buttonSubmit.addEventListener('click', function () {
-  sendData();
+  setSubmitAttribute();
 });
 
 wizardCoat.addEventListener('click', function() {
-  changeCoatColor();
+  changeCoatsColor(coatColor, wizardCoat, inputCoatColor);
 });
 
 wizardEyes.addEventListener('click', function() {
-  changeEyesColor();
+  changeEyesColor(eyesColor, wizardEyes, inputEyesColor);
 });
 
-fireball.addEventListener('click', function() {
-  changeFireballColor(fireballColor, fireball);
-  var attr = getBlockAttribute(fireball);
-  var lastIndex = attr.lastIndexOf(' ');
-  inputFireballColor.setAttribute('value', attr.substring(lastIndex + 1));
+fireball.addEventListener('click', function () {
+  changeFireballColor(fireballColor, fireball, inputFireballColor);
 });
+
+// Вызов ф-ций
+
+for (var i = 0; i < 6; i++) {
+  wizards.push({name: names[i], surname: surnames[i], eyesColor: eyesColor[i], coatColor: coatColor[i]});
+} // формирование массива wizards
+
+for (i = 0; i < 4; i++) {
+  var wizardElement = similarWizardTemplate.cloneNode(true);
+  fillElements(wizardElement);
+  addElements(wizardElement);
+}
+
+similarWizardsList.appendChild(fragment);
+
+showElements();
