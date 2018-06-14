@@ -2,11 +2,24 @@
 
 // Объявление переменных
 
+var ENTER_KEYCODE = 13;
+var ESC_KEYCODE = 27;
+
 var names = ['Иван ', 'Хуан Себастьян ', 'Мария ', 'Кристоф ', 'Виктор ', 'Юлия ', 'Люпита ', 'Вашингтон '];
 var surnames = ['да Марья', 'Верон', 'Мирабелла', 'Вальц', 'Онопко', 'Топольницкая', 'Нионго', 'Ирвинг'];
 var eyesColor = ['black', 'red', 'blue', 'yellow', 'green', ''];
 var coatColor = ['rgb(101, 137, 164)', 'rgb(241, 43, 107)', 'rgb(146, 100, 161)', 'rgb(56, 159, 117)', 'rgb(215, 210, 55)', 'rgb(0, 0, 0)'];
 var wizards = [];
+var blockSetup = document.querySelector('.setup');
+var blockSetupClose = document.querySelector('.setup-close');
+var blockSetupOpenIcon = document.querySelector('.setup-open-icon');
+var buttonSubmit = document.querySelector('.setup-submit');
+var setupWizard = document.querySelector('.setup-wizard');
+var wizardCoat = setupWizard.querySelector('.wizard-coat');
+var wizardEyes = setupWizard.querySelector('.wizard-eyes');
+var fireball = document.querySelector('.setup-fireball-wrap');
+
+console.dir(wizardEyes);
 
 // Вершины
 var similarWizardsList = document.querySelector('.setup-similar-list');
@@ -44,6 +57,37 @@ var addElements = function (element) {
   similarWizardsList.appendChild(fragment);
 };
 
+var closeDialogWindow = function () {
+  blockSetup.classList.add('hidden');
+};
+
+var openDialogWindow = function () {
+  blockSetup.classList.remove('hidden');
+};
+
+var sendData = function () {
+  buttonSubmit.setAttribute('type', 'submit');
+};
+
+var changeCoatColor = function () {
+  for (var i = 0; i < coatColor.length; i++) {
+    wizardCoat.setAttribute('style', 'fill:' + getRandomArrayIndex(coatColor));
+  }
+};
+
+var changeEyesColor = function () {
+  for (var i = 0; i < eyesColor.length; i++) {
+    wizardEyes.setAttribute('style', 'fill:' + getRandomArrayIndex(eyesColor));
+  }
+};
+
+var getRandomMinMax = function (min, max) {
+  return Math.floor(Math.random() * (max - min)) + min;
+};
+
+var changeFireballColor = function () {
+  fireball.setAttribute('style', 'background-color: #' + getRandomMinMax(10, 99).toString() + getRandomMinMax(10, 99).toString() + getRandomMinMax(10, 99).toString());
+}
 
 // Вызов ф-ций
 
@@ -58,3 +102,45 @@ for (i = 0; i < 4; i++) {
 }
 
 showElements();
+
+document.addEventListener('keydown', function (evt) {
+  if (evt.keyCode === ESC_KEYCODE) {
+    closeDialogWindow();
+  }
+});
+
+blockSetupOpenIcon.addEventListener('keydown', function (evt) {
+  if (evt.keyCode === ENTER_KEYCODE) {
+    openDialogWindow();
+  }
+});
+
+buttonSubmit.addEventListener('keydown', function (evt) {
+  if (evt.keyCode === ENTER_KEYCODE) {
+    sendData();
+  }
+});
+
+blockSetupClose.addEventListener('click', function () {
+  closeDialogWindow();
+});
+
+blockSetupOpenIcon.addEventListener('click', function () {
+  openDialogWindow();
+});
+
+buttonSubmit.addEventListener('click', function () {
+  sendData();
+});
+
+wizardCoat.addEventListener('click', function() {
+  changeCoatColor();
+});
+
+wizardEyes.addEventListener('click', function() {
+  changeEyesColor();
+});
+
+fireball.addEventListener('click', function() {
+  changeFireballColor();
+});
