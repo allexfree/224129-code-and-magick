@@ -11,6 +11,10 @@ var eyesColor = ['black', 'red', 'blue', 'yellow', 'green', ''];
 var coatColor = ['rgb(101, 137, 164)', 'rgb(241, 43, 107)', 'rgb(146, 100, 161)', 'rgb(56, 159, 117)', 'rgb(215, 210, 55)', 'rgb(0, 0, 0)'];
 var fireballColor = ['ee4830', '30a8ee', '5ce6c0', 'e848d5', 'e6e848'];
 var wizards = [];
+
+// Вершины
+var similarWizardsList = document.querySelector('.setup-similar-list');
+var similarWizardTemplate = document.querySelector('#similar-wizard-template').content.querySelector('.setup-similar-item');
 var blockSetup = document.querySelector('.setup');
 var blockSetupClose = document.querySelector('.setup-close');
 var blockSetupOpenIcon = document.querySelector('.setup-open-icon');
@@ -20,12 +24,6 @@ var wizardCoat = setupWizard.querySelector('.wizard-coat');
 var wizardEyes = setupWizard.querySelector('.wizard-eyes');
 var fireball = document.querySelector('.setup-fireball-wrap');
 var inputFireballColor = document.querySelector('input[name="fireball-color"]');
-
-console.log(inputFireballColor);
-
-// Вершины
-var similarWizardsList = document.querySelector('.setup-similar-list');
-var similarWizardTemplate = document.querySelector('#similar-wizard-template').content.querySelector('.setup-similar-item');
 
 
 // Определение ф-ций
@@ -94,6 +92,12 @@ var changeFireballColor = function (array, element) {
   }
 };
 
+var getBlockAttribute = function (blockName) {
+  return blockName.getAttribute('style');
+}
+
+
+
 // Вызов ф-ций
 
 for (var i = 0; i < 6; i++) {
@@ -154,7 +158,7 @@ wizardEyes.addEventListener('click', function() {
 
 fireball.addEventListener('click', function() {
   changeFireballColor(fireballColor, fireball);
-  var attr = fireball.getAttribute('style');
-  inputFireballColor.setAttribute('value', attr);
+  var attr = getBlockAttribute(fireball);
+  var lastIndex = attr.lastIndexOf(' ');
+  inputFireballColor.setAttribute('value', attr.substring(lastIndex + 1));
 });
-
