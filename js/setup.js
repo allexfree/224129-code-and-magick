@@ -17,7 +17,7 @@ var fragment = document.createDocumentFragment();
 var similarWizardsList = document.querySelector('.setup-similar-list');
 var similarWizardTemplate = document.querySelector('#similar-wizard-template').content.querySelector('.setup-similar-item');
 var blockSetup = document.querySelector('.setup');
-var blockSetupClose = document.querySelector('.setup-close');
+var blockSetupClose = blockSetup.querySelector('.setup-close');
 var blockSetupOpenIcon = document.querySelector('.setup-open-icon');
 var buttonSubmit = document.querySelector('.setup-submit');
 var setupWizard = document.querySelector('.setup-wizard');
@@ -73,21 +73,14 @@ var setSubmitAttribute = function () {
   buttonSubmit.setAttribute('type', 'submit');
 };
 
-/* Ф-ция changeCoatsColor устанавливает атрибут style="fill:..." блоку указанному в парметре elementOne и атрибут value блоку, указанному в параметре elementTwo, цвет берется из параметра array */
-var changeCoatsColor = function (array, elementOne, elementTwo) {
+/* Ф-ция changeCoatsAndEyesColor устанавливает атрибут style="fill:..." блоку указанному в парметре elementOne и атрибут value блоку, указанному в параметре elementTwo, цвет берется из параметра array */
+var changeCoatsAndEyesColor = function (array, elementOne, elementTwo) {
   var color = getRandomArrayElement(array); // в переменную передается рандомный элемент массива array
   elementOne.setAttribute('style', 'fill:' + color);
   elementTwo.setAttribute('value', color);
 };
 
-/* Ф-ция changeCoatsColor устанавливает атрибут style="fill:..." блоку указанному в парметре elementOne и атрибут value блоку, указанному в параметре elementTwo, цвет берется из параметра array */
-var changeEyesColor = function (array, elementOne, elementTwo) {
-  var color = getRandomArrayElement(array);
-  elementOne.setAttribute('style', 'fill:' + color);
-  elementTwo.setAttribute('value', color);
-};
-
-/* Ф-ция changeCoatsColor устанавливает атрибут style="background-color:..." блоку указанному в парметре elementOne и атрибут value блоку, указанному в параметре elementTwo, цвет берется из параметра array */
+/* Ф-ция changeFireballColor устанавливает атрибут style="background-color:..." блоку указанному в парметре elementOne и атрибут value блоку, указанному в параметре elementTwo, цвет берется из параметра array */
 var changeFireballColor = function (array, elementOne, elementTwo) {
   var color = '#' + getRandomArrayElement(array);
   elementOne.setAttribute('style', 'background-color:' + color);
@@ -133,11 +126,11 @@ buttonSubmit.addEventListener('click', function () {
 });
 
 wizardCoat.addEventListener('click', function () {
-  changeCoatsColor(coatColor, wizardCoat, inputCoatColor);
+  changeCoatsAndEyesColor(coatColor, wizardCoat, inputCoatColor);
 });
 
 wizardEyes.addEventListener('click', function () {
-  changeEyesColor(eyesColor, wizardEyes, inputEyesColor);
+  changeCoatsAndEyesColor(eyesColor, wizardEyes, inputEyesColor);
 });
 
 fireball.addEventListener('click', function () {
