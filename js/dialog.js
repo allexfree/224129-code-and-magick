@@ -2,39 +2,50 @@
 
 (function () {
 
+  // Объявление переменных
+
+  var startCoords;
+  var dragged;
+  var shift;
+
   var blockSetupDialog = window.blockSetup;
   var blockUploadDialog = blockSetupDialog.querySelector('.upload');
   var artifactCell = blockSetupDialog.querySelector('.setup-artifacts-cell');
   var artifactCellImg = artifactCell.querySelector('img');
 
+
+  // Вершины
+
   artifactCell.setAttribute('style', 'position: relative');
   artifactCellImg.setAttribute('style', 'position: absolute; z-index: 1000');
+  //var top = artifactCellImg.style.top;
+  console.log(artifactCellImg.getAttribute('style'));
+  var left = artifactCellImg.style.left;
 
-  blockUploadDialog.addEventListener('mousedown', function (evt) {
+  // Определение ф-ций
+
+  /*Ф-ция blockUploadMousedownHandler */
+  var blockUploadMousedownHandler = function (evt) {
     evt.preventDefault();
+    startCoords = {x: evt.clientX, y: evt.clientY};
+    dragged = false;
 
-    var startCoords = {x: evt.clientX, y: evt.clientY};
-    var dragged = false;
-
-    var onMouseMove = function (moveEvt) {
+    var mouseMoveHandler = function (moveEvt) {
       moveEvt.preventDefault();
       dragged = true;
 
-      var shift = {x: startCoords.x - moveEvt.clientX, y: startCoords.y - moveEvt.clientY
-      };
-
-      startCoords = {x: moveEvt.clientX, y: moveEvt.clientY
-      };
+      shift = {x: startCoords.x - moveEvt.clientX, y: startCoords.y - moveEvt.clientY};
+      startCoords = {x: moveEvt.clientX, y: moveEvt.clientY};
 
       blockSetupDialog.style.top = (blockSetupDialog.offsetTop - shift.y) + 'px';
       blockSetupDialog.style.left = (blockSetupDialog.offsetLeft - shift.x) + 'px';
     };
 
-    var onMouseUp = function (upEvt) {
+    var mouseUpHandler = function (upEvt) {
       upEvt.preventDefault();
 
-      document.removeEventListener('mousemove', onMouseMove);
-      document.removeEventListener('mouseup', onMouseUp);
+      document.removeEventListener('mousemove', mouseMoveHandler);
+      document.removeEventListener('mouseup', mouseUpHandler);
 
       if (dragged) {
         var onClickPreventDefault = function (evt) {
@@ -45,45 +56,41 @@
       }
     };
 
-    document.addEventListener('mousemove', onMouseMove);
-    document.addEventListener('mouseup', onMouseUp);
-  });
-
-////////////////////////////////////////////////////////////////////////
-
-artifactCellImg.addEventListener('mousedown', function (evt) {
-  evt.preventDefault();
-
-  var startCoordsStar = {x: evt.clientX, y: evt.clientY};
-
-  var onMouseMove = function (moveEvt) {
-    moveEvt.preventDefault();
-
-    var shiftStar = {
-      x: startCoordsStar.x - moveEvt.clientX,
-      y: startCoordsStar.y - moveEvt.clientY
-    };
-
-
-    startCoordsStar = {
-      x: moveEvt.clientX,
-      y: moveEvt.clientY
-    };
-
-    artifactCellImg.style.top = (artifactCellImg.offsetTop - shiftStar.y) + 'px';
-    artifactCellImg.style.left = (artifactCellImg.offsetLeft - shiftStar.x) + 'px';
-
+    document.addEventListener('mousemove', mouseMoveHandler);
+    document.addEventListener('mouseup', mouseUpHandler);
   };
 
-  var onMouseUp = function (upEvt) {
-    upEvt.preventDefault();
+  var starImgMousedownHandler = function (evt) {
+    evt.preventDefault();
+    startCoords = {x: evt.clientX, y: evt.clientY};
 
-    document.removeEventListener('mousemove', onMouseMove);
-    document.removeEventListener('mouseup', onMouseUp);
-  }
+    var mouseMoveHandler = function (moveEvt) {
+      moveEvt.preventDefault();
 
-  document.addEventListener('mousemove', onMouseMove);
-  document.addEventListener('mouseup', onMouseUp);
-});
+      shift = {x: startCoords.x - moveEvt.clientX, y: startCoords.y - moveEvt.clientY};
+      startCoords = {x: moveEvt.clientX, y: moveEvt.clientY};
+
+      artifactCellImg.style.top = (artifactCellImg.offsetTop - shift.y) + 'px';
+      artifactCellImg.style.left = (artifactCellImg.offsetLeft - shift.x) + 'px';
+    };
+
+    var mouseUpHandler = function (upEvt) {
+      upEvt.preventDefault();
+
+      document.removeEventListener('mousemove', mouseMoveHandler);
+      document.removeEventListener('mouseup', mouseUpHandler);
+    };
+
+    document.addEventListener('mousemove', mouseMoveHandler);
+    document.addEventListener('mouseup', mouseUpHandler);
+  };
+
+
+  // Обработчики событий
+
+  blockUploadDialog.addEventListener('mousedown', blockUploadMousedownHandler);
+  artifactCellImg.addEventListener('mousedown', starImgMousedownHandler);
+
+  // Вызов ф-ций
 
 })();
