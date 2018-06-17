@@ -18,9 +18,6 @@
 
   artifactCell.setAttribute('style', 'position: relative');
   artifactCellImg.setAttribute('style', 'position: absolute; z-index: 1000');
-  //var top = artifactCellImg.style.top;
-  console.log(artifactCellImg.getAttribute('style'));
-  var left = artifactCellImg.style.left;
 
   // Определение ф-ций
 
