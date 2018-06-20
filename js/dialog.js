@@ -4,6 +4,13 @@
 
   // Объявление переменных
 
+  var startCoords;
+  var dragged;
+  var shift;
+
+
+  // Вершины
+
   var blockSetup = document.querySelector('.setup');
   var blockSetupClose = blockSetup.querySelector('.setup-close');
   var blockSetupOpenIcon = document.querySelector('.setup-open-icon');
@@ -16,17 +23,10 @@
   var inputEyesColor = document.querySelector('input[name="eyes-color"]');
   var inputFireballColor = document.querySelector('input[name="fireball-color"]');
 
-  var startCoords;
-  var dragged;
-  var shift;
-
   var blockUploadDialog = blockSetup.querySelector('.upload');
   var setupInputName = blockSetup.querySelector('.setup-user-name');
   var artifactCell = blockSetup.querySelector('.setup-artifacts-cell');
   var artifactCellImg = artifactCell.querySelector('img');
-
-
-  // Вершины
 
   artifactCell.setAttribute('style', 'position: relative');
   artifactCellImg.setAttribute('style', 'position: absolute; z-index: 1000');
