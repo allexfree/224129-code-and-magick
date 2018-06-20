@@ -100,8 +100,8 @@
       document.removeEventListener('mouseup', mouseUpHandler);
 
       if (dragged) {
-        var onClickPreventDefault = function (evt) {
-          evt.preventDefault();
+        var onClickPreventDefault = function (e) {
+          e.preventDefault();
           blockUploadDialog.removeEventListener('click', onClickPreventDefault);
         };
         blockUploadDialog.addEventListener('click', onClickPreventDefault);
