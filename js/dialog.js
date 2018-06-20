@@ -4,6 +4,8 @@
 
   // Объявление переменных
 
+  var fireballColor = ['ee4830', '30a8ee', '5ce6c0', 'e848d5', 'e6e848'];
+
   var startCoords;
   var dragged;
   var shift;
@@ -33,6 +35,11 @@
 
 
   // Определение ф-ций
+
+  /* Ф-ция getRandomArrayElement получает случайный элемент массива, указанного в парметре array */
+  var getRandomArrayElement = function (array) {
+    return array[Math.floor(Math.random() * array.length)];
+  };
 
   /* Ф-ция closeDialogWindow добавляет класс hidden блоку .setup и устанавливает атрибуты style top/left блокам artifactCellImg и .setup*/
   var closeDialogWindow = function () {
@@ -143,13 +150,13 @@
   });
 
   blockSetupOpenIcon.addEventListener('keydown', function (evt) {
-    if (evt.keyCode === ENTER_KEYCODE) {
+    if (evt.keyCode === window.ENTER_KEYCODE) {
       openDialogWindow();
     }
   });
 
   buttonSubmit.addEventListener('keydown', function (evt) {
-    if (evt.keyCode === ENTER_KEYCODE) {
+    if (evt.keyCode === window.ENTER_KEYCODE) {
       setSubmitAttribute();
     }
   });
