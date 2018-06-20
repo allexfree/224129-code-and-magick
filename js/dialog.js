@@ -4,6 +4,9 @@
 
   // Объявление переменных
 
+  var ENTER_KEYCODE = 13;
+  var ESC_KEYCODE = 27;
+
   var fireballColor = ['ee4830', '30a8ee', '5ce6c0', 'e848d5', 'e6e848'];
 
   var startCoords;
@@ -99,7 +102,7 @@
       if (dragged) {
         var onClickPreventDefault = function (evt) {
           evt.preventDefault();
-          blockUploadDialog.removeEventListener('click', onClickPreventDefault)
+          blockUploadDialog.removeEventListener('click', onClickPreventDefault);
         };
         blockUploadDialog.addEventListener('click', onClickPreventDefault);
       }
@@ -138,25 +141,25 @@
   // Обработчики событий
 
   document.addEventListener('keydown', function (evt) {
-    if (evt.keyCode === window.ESC_KEYCODE && evt.target !== setupInputName) {
+    if (evt.keyCode === ESC_KEYCODE && evt.target !== setupInputName) {
       closeDialogWindow();
     }
   });
 
   blockSetupClose.addEventListener('keydown', function (evt) {
-    if (evt.keyCode === window.ENTER_KEYCODE) {
+    if (evt.keyCode === ENTER_KEYCODE) {
       closeDialogWindow();
     }
   });
 
   blockSetupOpenIcon.addEventListener('keydown', function (evt) {
-    if (evt.keyCode === window.ENTER_KEYCODE) {
+    if (evt.keyCode === ENTER_KEYCODE) {
       openDialogWindow();
     }
   });
 
   buttonSubmit.addEventListener('keydown', function (evt) {
-    if (evt.keyCode === window.ENTER_KEYCODE) {
+    if (evt.keyCode === ENTER_KEYCODE) {
       setSubmitAttribute();
     }
   });
@@ -174,11 +177,11 @@
   });
 
   wizardCoat.addEventListener('click', function () {
-    changeCoatsAndEyesColor(coatColor, wizardCoat, inputCoatColor);
+    changeCoatsAndEyesColor(window.coatColor, wizardCoat, inputCoatColor);
   });
 
   wizardEyes.addEventListener('click', function () {
-    changeCoatsAndEyesColor(eyesColor, wizardEyes, inputEyesColor);
+    changeCoatsAndEyesColor(window.eyesColor, wizardEyes, inputEyesColor);
   });
 
   fireball.addEventListener('click', function () {
