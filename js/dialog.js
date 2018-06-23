@@ -4,11 +4,6 @@
 
   // Объявление переменных
 
-  var ENTER_KEYCODE = 13;
-  var ESC_KEYCODE = 27;
-
-  var fireballColor = ['ee4830', '30a8ee', '5ce6c0', 'e848d5', 'e6e848'];
-
   var startCoords;
   var dragged;
   var shift;
@@ -20,13 +15,6 @@
   var blockSetupClose = blockSetup.querySelector('.setup-close');
   var blockSetupOpenIcon = document.querySelector('.setup-open-icon');
   var buttonSubmit = document.querySelector('.setup-submit');
-  var setupWizard = document.querySelector('.setup-wizard');
-  var wizardCoat = setupWizard.querySelector('.wizard-coat');
-  var wizardEyes = setupWizard.querySelector('.wizard-eyes');
-  var fireball = document.querySelector('.setup-fireball-wrap');
-  var inputCoatColor = document.querySelector('input[name="coat-color"]');
-  var inputEyesColor = document.querySelector('input[name="eyes-color"]');
-  var inputFireballColor = document.querySelector('input[name="fireball-color"]');
 
   var blockUploadDialog = blockSetup.querySelector('.upload');
   var setupInputName = blockSetup.querySelector('.setup-user-name');
@@ -38,11 +26,6 @@
 
 
   // Определение ф-ций
-
-  /* Ф-ция getRandomArrayElement получает случайный элемент массива, указанного в парметре array */
-  var getRandomArrayElement = function (array) {
-    return array[Math.floor(Math.random() * array.length)];
-  };
 
   /* Ф-ция closeDialogWindow добавляет класс hidden блоку .setup и устанавливает атрибуты style top/left блокам artifactCellImg и .setup*/
   var closeDialogWindow = function () {
@@ -61,20 +44,6 @@
   /* Ф-ция setSubmitAttribute добавляет атрибут type="submit" кнопке button */
   var setSubmitAttribute = function () {
     buttonSubmit.setAttribute('type', 'submit');
-  };
-
-  /* Ф-ция changeCoatsAndEyesColor устанавливает атрибут style="fill:..." блоку указанному в парметре elementOne и атрибут value блоку, указанному в параметре elementTwo, цвет берется из параметра array */
-  var changeCoatsAndEyesColor = function (array, elementOne, elementTwo) {
-    var color = getRandomArrayElement(array); // в переменную передается рандомный элемент массива array
-    elementOne.setAttribute('style', 'fill:' + color);
-    elementTwo.setAttribute('value', color);
-  };
-
-  /* Ф-ция changeFireballColor устанавливает атрибут style="background-color:..." блоку указанному в парметре elementOne и атрибут value блоку, указанному в параметре elementTwo, цвет берется из параметра array */
-  var changeFireballColor = function (array, elementOne, elementTwo) {
-    var color = '#' + getRandomArrayElement(array);
-    elementOne.setAttribute('style', 'background-color:' + color);
-    elementTwo.setAttribute('value', color);
   };
 
   var blockUploadMousedownHandler = function (evt) {
@@ -141,25 +110,25 @@
   // Обработчики событий
 
   document.addEventListener('keydown', function (evt) {
-    if (evt.keyCode === ESC_KEYCODE && evt.target !== setupInputName) {
+    if (evt.keyCode === window.utils.ESC_KEYCODE && evt.target !== setupInputName) {
       closeDialogWindow();
     }
   });
 
   blockSetupClose.addEventListener('keydown', function (evt) {
-    if (evt.keyCode === ENTER_KEYCODE) {
+    if (evt.keyCode === window.utils.ENTER_KEYCODE) {
       closeDialogWindow();
     }
   });
 
   blockSetupOpenIcon.addEventListener('keydown', function (evt) {
-    if (evt.keyCode === ENTER_KEYCODE) {
+    if (evt.keyCode === window.utils.ENTER_KEYCODE) {
       openDialogWindow();
     }
   });
 
   buttonSubmit.addEventListener('keydown', function (evt) {
-    if (evt.keyCode === ENTER_KEYCODE) {
+    if (evt.keyCode === window.utils.ENTER_KEYCODE) {
       setSubmitAttribute();
     }
   });
@@ -174,18 +143,6 @@
 
   buttonSubmit.addEventListener('click', function () {
     setSubmitAttribute();
-  });
-
-  wizardCoat.addEventListener('click', function () {
-    changeCoatsAndEyesColor(window.coatColor, wizardCoat, inputCoatColor);
-  });
-
-  wizardEyes.addEventListener('click', function () {
-    changeCoatsAndEyesColor(window.eyesColor, wizardEyes, inputEyesColor);
-  });
-
-  fireball.addEventListener('click', function () {
-    changeFireballColor(fireballColor, fireball, inputFireballColor);
   });
 
   blockUploadDialog.addEventListener('mousedown', blockUploadMousedownHandler);
