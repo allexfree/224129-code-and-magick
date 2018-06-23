@@ -2,9 +2,6 @@
 
 (function () {
 
-  var ENTER_KEYCODE = 13;
-  var ESC_KEYCODE = 27;
-
   /* Функция getMaxElement предназначена для нахождения максимального элемента в массиве */
   var getMaxElement = function (arr) {
     var maxElement = arr[0]; // маркер максимального элемента (элемент с index = 0)
@@ -28,6 +25,6 @@
     getRandomArrayElement: getRandomArrayElement,
     ENTER_KEYCODE: 13,
     ESC_KEYCODE: 27,
-  }
+  };
 
 })();
