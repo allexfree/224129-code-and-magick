@@ -3,11 +3,11 @@
 
   // Объявление переменных
 
-  var names = ['Иван ', 'Хуан Себастьян ', 'Мария ', 'Кристоф ', 'Виктор ', 'Юлия ', 'Люпита ', 'Вашингтон '];
+  /* var names = ['Иван ', 'Хуан Себастьян ', 'Мария ', 'Кристоф ', 'Виктор ', 'Юлия ', 'Люпита ', 'Вашингтон '];
   var surnames = ['да Марья', 'Верон', 'Мирабелла', 'Вальц', 'Онопко', 'Топольницкая', 'Нионго', 'Ирвинг'];
   var eyesColor = ['black', 'red', 'blue', 'yellow', 'green'];
   var coatColor = ['rgb(101, 137, 164)', 'rgb(241, 43, 107)', 'rgb(146, 100, 161)', 'rgb(56, 159, 117)', 'rgb(215, 210, 55)', 'rgb(0, 0, 0)'];
-  var wizards = [];
+  var wizards = []; */
 
 
   // Вершины
@@ -41,9 +41,9 @@
 
   // Вызов ф-ций
 
-  /*for (var i = 0; i < 6; i++) {
+  /* for (var i = 0; i < 6; i++) {
     wizards.push({name: names[i], surname: surnames[i], eyesColor: eyesColor[i], coatColor: coatColor[i]});
-  } // формирование массива wizards*/
+  } // формирование массива wizards */
 
   var getListWizards = function (wizards) {
     for (var i = 0; i < 4; i++) {
