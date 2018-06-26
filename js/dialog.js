@@ -21,9 +21,10 @@
   var artifactCell = blockSetup.querySelector('.setup-artifacts-cell');
   var artifactCellImg = artifactCell.querySelector('img');
 
+  var form = blockSetup.querySelector('.setup-wizard-form');
+
   artifactCell.setAttribute('style', 'position: relative');
   artifactCellImg.setAttribute('style', 'position: absolute; z-index: 1000');
-
 
   // Определение ф-ций
 
@@ -34,6 +35,7 @@
     artifactCellImg.style.left = '0';
     blockSetup.style.top = '80px';
     blockSetup.style.left = '50%';
+    setupInputName.value = 'Синий Пендальф';
   };
 
   /* Ф-ция openDialogWindow удаляет класс hidden у блока .setup */
@@ -143,6 +145,12 @@
 
   buttonSubmit.addEventListener('click', function () {
     setSubmitAttribute();
+  });
+
+  form.addEventListener('submit', function (evt) {
+    evt.preventDefault();
+
+    window.backend.save(new FormData(form), closeDialogWindow, window.backend.windowError);
   });
 
   blockUploadDialog.addEventListener('mousedown', blockUploadMousedownHandler);

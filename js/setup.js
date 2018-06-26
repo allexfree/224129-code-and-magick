@@ -3,12 +3,6 @@
 
   // Объявление переменных
 
-  var names = ['Иван ', 'Хуан Себастьян ', 'Мария ', 'Кристоф ', 'Виктор ', 'Юлия ', 'Люпита ', 'Вашингтон '];
-  var surnames = ['да Марья', 'Верон', 'Мирабелла', 'Вальц', 'Онопко', 'Топольницкая', 'Нионго', 'Ирвинг'];
-  var eyesColor = ['black', 'red', 'blue', 'yellow', 'green'];
-  var coatColor = ['rgb(101, 137, 164)', 'rgb(241, 43, 107)', 'rgb(146, 100, 161)', 'rgb(56, 159, 117)', 'rgb(215, 210, 55)', 'rgb(0, 0, 0)'];
-  var wizards = [];
-
 
   // Вершины
 
@@ -30,33 +24,27 @@
   };
 
   /* Ф-ция fillElements выполняет заполнение блока элементами на основе массива wizards */
-  var fillElements = function (element) {
-    element.querySelector('.setup-similar-label').textContent = (window.utils.getRandomArrayElement(wizards).name + window.utils.getRandomArrayElement(wizards).surname);
-    element.querySelector('.wizard-coat').style.fill = window.utils.getRandomArrayElement(wizards).coatColor;
-    element.querySelector('.wizard-eyes').style.fill = window.utils.getRandomArrayElement(wizards).eyesColor;
-  };
-
-  /* Ф-ция addElements добавляет заполненые DOM-элементы в блок .setup-similar-list */
-  var addElements = function (element) {
-    fragment.appendChild(element);
+  var fillElements = function (wizard) {
+    var wizardElement = similarWizardTemplate.cloneNode(true);
+    wizardElement.querySelector('.setup-similar-label').textContent = wizard.name;
+    wizardElement.querySelector('.wizard-coat').style.fill = wizard.colorCoat;
+    wizardElement.querySelector('.wizard-eyes').style.fill = wizard.colorEyes;
+    return wizardElement;
   };
 
 
   // Вызов ф-ций
 
-  for (var i = 0; i < 6; i++) {
-    wizards.push({name: names[i], surname: surnames[i], eyesColor: eyesColor[i], coatColor: coatColor[i]});
-  } // формирование массива wizards
-
-  for (i = 0; i < 4; i++) {
-    var wizardElement = similarWizardTemplate.cloneNode(true);
-    fillElements(wizardElement);
-    addElements(wizardElement);
-  }
-
-  similarWizardsList.appendChild(fragment);
+  var getListWizards = function (wizards) {
+    for (var i = 0; i < 4; i++) {
+      fragment.appendChild(fillElements(window.utils.getRandomArrayElement(wizards)));
+    }
+    similarWizardsList.appendChild(fragment);
+  };
 
   showElements();
+
+  window.backend.load(getListWizards, window.backend.windowError);
 
   window.setup = {
     eyesColor: ['black', 'red', 'blue', 'yellow', 'green'],
