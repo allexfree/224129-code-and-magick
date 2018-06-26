@@ -41,9 +41,9 @@
 
   // Вызов ф-ций
 
-  for (var i = 0; i < 6; i++) {
+  /*for (var i = 0; i < 6; i++) {
     wizards.push({name: names[i], surname: surnames[i], eyesColor: eyesColor[i], coatColor: coatColor[i]});
-  } // формирование массива wizards
+  } // формирование массива wizards*/
 
   var getListWizards = function (wizards) {
     for (var i = 0; i < 4; i++) {
@@ -52,13 +52,13 @@
     similarWizardsList.appendChild(fragment);
   };
 
-showElements();
+  showElements();
 
-window.backend.load(getListWizards, window.backend.windowError);
+  window.backend.load(getListWizards, window.backend.windowError);
 
-window.setup = {
-  eyesColor: ['black', 'red', 'blue', 'yellow', 'green'],
-  coatColor: ['rgb(101, 137, 164)', 'rgb(241, 43, 107)', 'rgb(146, 100, 161)', 'rgb(56, 159, 117)', 'rgb(215, 210, 55)', 'rgb(0, 0, 0)']
-};
+  window.setup = {
+    eyesColor: ['black', 'red', 'blue', 'yellow', 'green'],
+    coatColor: ['rgb(101, 137, 164)', 'rgb(241, 43, 107)', 'rgb(146, 100, 161)', 'rgb(56, 159, 117)', 'rgb(215, 210, 55)', 'rgb(0, 0, 0)']
+  };
 
 })();

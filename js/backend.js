@@ -15,13 +15,13 @@
 
       switch (xhr.status) {
         case SUCCES_RESPONSE:
-        onLoad(xhr.response);
-        break;
+          onLoad(xhr.response);
+          break;
         case NOT_FOUND_RESPONSE:
-        onError('Документ не найден');
-        break;
+          onError('Документ не найден');
+          break;
         default:
-        onError('Ответ сервера: ' + xhr.status + '' + xhr.statusText);
+          onError('Ответ сервера: ' + xhr.status + '' + xhr.statusText);
       }
     });
 
@@ -29,7 +29,7 @@
       onError('Ошибка загрузки данных');
     });
 
-    xhr.addEventListener('timeout', function (evt) {
+    xhr.addEventListener('timeout', function () {
       onError('Загрузка не успела произойти за ' + timeout + 'мс');
     });
 
@@ -47,13 +47,13 @@
 
       switch (xhr.status) {
         case SUCCES_RESPONSE:
-        onLoad(xhr.response);
-        break;
+          onLoad(xhr.response);
+          break;
         case NOT_FOUND_RESPONSE:
-        onError('Документ не найден');
-        break;
+          onError('Документ не найден');
+          break;
         default:
-        onError('Ответ сервера: ' + xhr.status + '' + xhr.statusText);
+          onError('Ответ сервера: ' + xhr.status + '' + xhr.statusText);
       }
     });
 
@@ -61,7 +61,7 @@
       onError('Ошибка загрузки данных');
     });
 
-    xhr.addEventListener('timeout', function (evt) {
+    xhr.addEventListener('timeout', function () {
       onError('Загрузка не успела произойти за ' + timeout + 'мс');
     });
 
@@ -80,6 +80,6 @@
     load: load,
     save: save,
     windowError: windowError
-  }
+  };
 
 })();
