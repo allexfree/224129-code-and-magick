@@ -23,8 +23,10 @@
   window.utils = {
     getMaxElement: getMaxElement,
     getRandomArrayElement: getRandomArrayElement,
+    MAX_AMOUNT_SIMILAR_WIZRDS: 4,
     ENTER_KEYCODE: 13,
     ESC_KEYCODE: 27,
+    DEBOUNCE_INTERVAL: 300
   };
 
 })();
