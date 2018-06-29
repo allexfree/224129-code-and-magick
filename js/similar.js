@@ -46,10 +46,10 @@
     return wizardElement;
   };
 
-  var getListWizards = function (wizards) {
+  var getListWizards = function (wizard) {
     similarWizardsList.textContent = '';
     for (var i = 0; i < window.utils.MAX_AMOUNT_SIMILAR_WIZRDS; i++) {
-      fragment.appendChild(fillElements(wizards[i]));
+      fragment.appendChild(fillElements(wizard[i]));
     }
     similarWizardsList.appendChild(fragment);
   };
