@@ -35,6 +35,7 @@
 
     xhr.open('GET', URL);
     xhr.send();
+
   };
 
   var save = function (data, onLoad, onError) {
