@@ -58,7 +58,7 @@
     var color = window.utils.getRandomArrayElement(array); // в переменную передается рандомный элемент массива array
     elementOne.setAttribute('style', 'fill:' + color);
     elementTwo.setAttribute('value', color);
-    coatColor =  inputCoatColor.value;
+    coatColor = inputCoatColor.value;
     eyesColor = inputEyesColor.value;
     if (lastTimeout) {
       window.clearTimeout(lastTimeout);

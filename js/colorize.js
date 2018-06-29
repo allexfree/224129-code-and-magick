@@ -8,7 +8,7 @@
   var inputFireballColor = document.querySelector('input[name="fireball-color"]');
 
   /* Ф-ция changeFireballColor устанавливает атрибут style="background-color:..." блоку указанному в парметре elementOne и атрибут value блоку, указанному в параметре elementTwo, цвет берется из параметра array */
- var changeFireballColor = function (array, elementOne, elementTwo) {
+  var changeFireballColor = function (array, elementOne, elementTwo) {
     var color = '#' + window.utils.getRandomArrayElement(array);
     elementOne.setAttribute('style', 'background-color:' + color);
     elementTwo.setAttribute('value', color);
